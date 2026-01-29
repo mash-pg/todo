@@ -75,7 +75,7 @@ public class TodoController {
     	return ResponseEntity.ok(responses);
     }
     
-    // GET /api/todos/{id} - 詳細取得
+    // GET /api/todos/{id} - 詳細取得 
     @GetMapping("/{id}")
     public ResponseEntity<TodoResponse> get(@PathVariable Long id){
     	Todo todo = getTodoUseCase.execute(id);
