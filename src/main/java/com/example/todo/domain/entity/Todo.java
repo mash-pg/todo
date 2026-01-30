@@ -80,9 +80,14 @@ public class Todo {
 	public LocalDateTime getUpdatedAt() {
 		return updated_at;
 	}
-	//引数のデータ更新やな
+	//タイトルの更新
 	public void changeTitle(TodoTitle title) {
 		this.title = title;
+	}
+	
+	//作成時間の更新
+	public void changeCreatedAt(LocalDateTime created_at) {
+		this.created_at = created_at;
 	}
 
 		

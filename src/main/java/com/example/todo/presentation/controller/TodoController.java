@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todo.application.usecase.CompleteTodoUseCase;
@@ -65,9 +66,11 @@ public class TodoController {
 
     // GET /api/todos
     @GetMapping
-    public ResponseEntity<List<TodoResponse>> list() {
+    public ResponseEntity<List<TodoResponse>> list(
+    		@RequestParam(defaultValue="createdAt") String sort
+    		) {
         // 1. UseCase を呼ぶ
-    	List<Todo> todos = listtodousecase.execute();
+    	List<Todo> todos = listtodousecase.execute(sort);
         // 2. Entity のリストを DTO のリストに変換
     	List<TodoResponse> responses = todos.stream().map(TodoResponse::from)
     			.collect(Collectors.toList());
