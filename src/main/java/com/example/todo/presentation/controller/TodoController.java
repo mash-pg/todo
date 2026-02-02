@@ -27,9 +27,11 @@ import com.example.todo.presentation.dto.TodoResponse;
 import com.example.todo.presentation.dto.UpdateTodoRequest;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/todos")
+@Slf4j
 public class TodoController {
 
     private final GetTodoUseCase getTodoUseCase;
@@ -56,6 +58,7 @@ public class TodoController {
     // POST /api/todos
     @PostMapping
     public ResponseEntity<TodoResponse> create(@Valid @RequestBody CreateTodoRequest request) {
+    	log.info(request.getDescription());
         // 1. UseCase を呼ぶ
     	Todo todo = createtodousecase.execute(request.getTitle());
         // 2. Entity を DTO に変換
@@ -72,7 +75,8 @@ public class TodoController {
         // 1. UseCase を呼ぶ
     	List<Todo> todos = listtodousecase.execute(sort);
         // 2. Entity のリストを DTO のリストに変換
-    	List<TodoResponse> responses = todos.stream().map(TodoResponse::from)
+    	List<TodoResponse> responses = todos.stream()
+    			.map(TodoResponse::from) //ここでEntityをDTOに変換
     			.collect(Collectors.toList());
         // 3. 200 OK で返す
     	return ResponseEntity.ok(responses);
