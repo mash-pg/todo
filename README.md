@@ -4,6 +4,8 @@
 Spring Boot で作成した ToDo 管理の REST API です。
 Claude Code と一緒に DDD 軽量版の設計パターンを学習しながら作成しました。
 
+> **注意**: これは学習用プロジェクトです。本番環境での利用は想定していません。
+
 ## 技術スタック
 - Java 17
 - Spring Boot 3.5.10
@@ -53,3 +55,5 @@ http://localhost:8080/h2-console
 | JDBC URL | `jdbc:h2:mem:tododb` |
 | User Name | `sa` |
 | Password | （空欄） |
+
+> **注意**: 上記は学習用のデフォルト設定です。本番環境では認証情報を README に記載せず、環境変数で管理してください。
